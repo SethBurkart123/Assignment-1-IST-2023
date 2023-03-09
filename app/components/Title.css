@@ -1,0 +1,53 @@
+.white-text-in {
+  @apply text-transparent;
+  background: linear-gradient(
+    250deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 1) 60%
+  );
+  animation: white-text-in 3s ease-in-out forwards;
+  background-repeat: no-repeat;
+  background-clip: text !important;
+  background-size: 250%;
+  user-select: none;
+}
+
+@keyframes white-text-in {
+  0% {
+    background-position: -400px 0px;
+  }
+  70% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}
+
+.coloured-text-in {
+  user-select: none;
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 1) 0%,
+    rgba(192, 132, 252, 1) 30%,
+    rgba(192, 132, 252, 0) 60%
+  );
+  background-clip: text;
+  -webkit-background-clip: text; /* Safari/Chrome */
+  -moz-background-clip: text; /* Firefox */
+  color: transparent;
+  animation: coloured-text-in 3s ease-in-out forwards;
+  background-size: 250%;
+}
+
+@keyframes coloured-text-in {
+  0% {
+    background-position: -510px 0px;
+  }
+  70% {
+    background-position: -510px 0px;
+  }
+  100% {
+    background-position: 0px 0px;
+  }
+}

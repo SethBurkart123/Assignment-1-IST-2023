@@ -5,7 +5,7 @@
     rgba(255, 255, 255, 0) 30%,
     rgba(255, 255, 255, 1) 60%
   );
-  animation: white-text-in 3s ease-in-out forwards;
+  animation: white-text-in 2s ease-in forwards;
   background-repeat: no-repeat;
   background-clip: text !important;
   background-size: 250%;
@@ -14,9 +14,12 @@
 
 @keyframes white-text-in {
   0% {
-    background-position: -400px 0px;
+    background-position: -470px 0px;
   }
-  70% {
+  15% {
+    background-position: -470px 0px;
+  }
+  50% {
     background-position: 0px 0px;
   }
   100% {
@@ -29,14 +32,14 @@
   background: linear-gradient(
     90deg,
     rgba(37, 99, 235, 1) 0%,
-    rgba(192, 132, 252, 1) 30%,
-    rgba(192, 132, 252, 0) 60%
+    rgba(192, 132, 252, 1) 45%,
+    rgba(192, 132, 252, 0) 50%
   );
   background-clip: text;
   -webkit-background-clip: text; /* Safari/Chrome */
   -moz-background-clip: text; /* Firefox */
   color: transparent;
-  animation: coloured-text-in 3s ease-in-out forwards;
+  animation: coloured-text-in 2s ease-out forwards;
   background-size: 250%;
 }
 
@@ -44,8 +47,11 @@
   0% {
     background-position: -510px 0px;
   }
-  70% {
+  41.7% {
     background-position: -510px 0px;
+  }
+  75% {
+    background-position: 0px 0px;
   }
   100% {
     background-position: 0px 0px;

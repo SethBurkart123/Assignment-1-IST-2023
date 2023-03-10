@@ -1,0 +1,31 @@
+---
+import './Cursor.css';
+---
+
+<div>
+  <div style="top:-80px; left:-80px;" class='cursor cursor-dot'></div>
+  <div style="top: -80px; left:-80px;" class='cursor cursor-shadow disabled'></div>
+</div>
+
+<script is:inline>
+const cursorDot = document.querySelector('.cursor-dot');
+const cursorShadow = document.querySelector('.cursor-shadow');
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  requestAnimationFrame(updateCursor);
+});
+function updateCursor() {
+  cursorShadow.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
+  cursorDot.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
+  cursorShadow.classList.remove("disabled");
+}
+
+document.addEventListener('mousedown', () => {
+  cursorShadow.classList.add("expand");
+})
+document.addEventListener('mouseup', () => {
+  cursorShadow.classList.remove("expand");
+})
+</script>

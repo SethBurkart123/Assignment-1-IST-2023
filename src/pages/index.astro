@@ -1,0 +1,67 @@
+---
+import Title from "../components/Title.astro";
+import Cursor from "../components/Cursor.astro";
+import "../globals.css";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Seth Burkart</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"> 
+	</head>
+	<body class="w-screen h-screen overflow-hidden text-white bg-black">
+		<Cursor />
+    <div data-scroll-container class="overflow-y-scroll">
+
+      <div class="place-items-center grid h-screen">
+        <Title />
+      </div>
+      <div class="flex justify-center items-center h-screen bg-gray-900">
+        <h1 class="text-8xl font-extrabold text-white">I do</h1>
+      </div>
+
+
+
+    </div>
+	</body>
+</html>
+
+<!--script is:inline src="/splitting/splitting.min.js" /-->
+<script is:inline src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js" />
+<script is:inline>
+
+	var scroll = new LocomotiveScroll({
+		el: document.querySelector('[data-scroll-container]'),
+		smooth: true,
+		lerp: 0.15,
+		smartphone: {
+        smooth: true
+    }
+	});
+	/*
+	// initialize Splitting
+	const splitting = Splitting();
+
+	scroll.on('scroll', obj => {
+		scroll.current = obj.scroll.y;
+		const distance = scroll.current - scroll.cache;
+		scroll.cache = scroll.current;
+		// translation value will be mapped in the interval of [-50,50] for a scroll distance of [150,-150]
+		const translateY = map(distance, 150, -150, -50, 50);
+		// for every word from the splitting object...
+		for (const [i,word] of splitting.entries()) {
+			// total number of characters for this word
+			const charsTotal = word.chars.length;
+			// for every char from each word...
+			for (const [j,char] of word.chars.entries()) {
+				// we want the middle chars to have a higher translationY value so it gives the illusion the word is bending
+				const factor = j < Math.ceil(charsTotal/2) ? j : Math.ceil(charsTotal/2) - Math.abs(Math.floor(charsTotal/2) - j) - 1;
+				char.style.transform = `translate3d(0,${factor*translateY}px,0)`;
+			}
+		}
+    });*/
+</script>

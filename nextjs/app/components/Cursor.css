@@ -3,7 +3,7 @@
   height: var(--size);
   width: var(--size);
   border-radius: 50%;
-  position: absolute;
+  position: fixed;
   z-index: 10000;
   transform: translate(-50%, -50%);
   pointer-events: none;
@@ -13,7 +13,7 @@
   background-color: transparent;
   border: 1px solid #fff;
   --size: 40px;
-  transition: top 0.2s, left 0.2s, blur 2s, opacity 1s, scale 0.8s, width 0.8s,
+  transition: top 0.2s, left 0.2s, blur 2s, opacity 2s, scale 0.8s, width 0.8s,
     height 0.8s, background-color 0.2s, border-color 0.2s;
   transition-timing-function: ease-out;
   will-change: transform, top, left;

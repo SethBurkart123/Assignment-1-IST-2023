@@ -1,7 +1,7 @@
 {
   "name": "nextjs",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "framer-motion": "^7.5.3",
+    "locomotive-scroll": "^4.1.4",
     "next": "^13.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/locomotive-scroll": "^4.1.0",
     "@types/node": "18.8.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

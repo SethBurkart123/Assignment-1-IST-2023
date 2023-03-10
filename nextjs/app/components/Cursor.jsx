@@ -8,10 +8,10 @@ export default function CustomCursor() {
   useEffect(() => {
     if (cursorRef.current == null || cursorRef == null)
       return;
-    const moveCursor = (e: any) => {
+    const moveCursor = (e) => {
       requestAnimationFrame(() => {
-        cursorRef.current.setAttribute("style", "top: " + (e.pageY) + "px; left: " + (e.pageX) + "px;")
-        cursorCenterRef.current.setAttribute("style", "top: " + (e.pageY) + "px; left: " + (e.pageX) + "px;")
+        cursorRef.current.setAttribute("style", "top: " + (e.clientY) + "px; left: " + (e.clientX) + "px;")
+        cursorCenterRef.current.setAttribute("style", "top: " + (e.clientY) + "px; left: " + (e.clientX) + "px;")
         cursorRef.current.classList.remove("disabled");
       });
     };

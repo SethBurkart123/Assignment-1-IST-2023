@@ -5,6 +5,7 @@ import './Cursor.css';
 <div>
   <div style="top:-80px; left:-80px;" class='cursor cursor-dot'></div>
   <div style="top: -80px; left:-80px;" class='cursor cursor-shadow disabled'></div>
+  <img class="svg-cursor h-4 w-auto" src="/cursor.svg" />
 </div>
 
 <script is:inline>
@@ -14,12 +15,27 @@ const cursorShadow = document.querySelector('.cursor-shadow');
 document.addEventListener('mousemove', (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
-  requestAnimationFrame(updateCursor);
+  requestAnimationFrame(updateCursor(e));
 });
-function updateCursor() {
+function updateCursor(e) {
   cursorShadow.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
   cursorDot.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
   cursorShadow.classList.remove("disabled");
+  const gameContainer = document.querySelector('#gameContainer');
+  const svgCursor = document.querySelector('.svg-cursor');
+
+  if (gameContainer && gameContainer.contains(e.target)) {
+    cursorDot.style.display = 'none';
+    cursorShadow.style.display = 'none';
+    svgCursor.style.display = 'block';
+    svgCursor.style.top = mouseY + 'px';
+    svgCursor.style.left = mouseX + 'px';
+  } else {
+    cursorDot.style.display = 'block';
+    cursorShadow.style.display = 'block';
+    svgCursor.style.display = 'none';
+  }
+
 }
 
 document.addEventListener('mousedown', () => {

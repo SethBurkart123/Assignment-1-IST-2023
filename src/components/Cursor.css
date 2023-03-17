@@ -42,7 +42,6 @@
 
 .expand {
   @apply scale-95 -translate-x-1/2 -translate-y-1/2;
-  //transform: translate(-50%, -50%) scale(0.8);
 }
 
 .cursor-shadow.disabled {
@@ -53,4 +52,11 @@
 .cursor-dot.disabled {
   opacity: 0;
   blur: 100px;
+}
+
+.svg-cursor {
+  position: fixed;
+  z-index: 10000;
+  pointer-events: none;
+  display: none;
 }

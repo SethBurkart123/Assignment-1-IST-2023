@@ -1,0 +1,41 @@
+<div class="flex justify-center gap-12 items-center h-screen bg-black">
+  <div class="flex justify-center left-1/2 transform -translate-x-1/2">
+    <p class="text-center">I do</p>
+  </div>
+  <div class="text-right">
+    <p class="opacity-0 transition-opacity duration-500 ease-in-out text-2xl">Video editing</p>
+    <p class="opacity-0 transition-opacity duration-500 ease-in-out text-2xl">VFX</p>
+    <p class="opacity-0 transition-opacity duration-500 ease-in-out text-2xl">Live Production</p>
+  </div>
+</div>
+
+
+<script is:inline>
+// Initialize Locomotive Scroll
+const scroll = new LocomotiveScroll({
+  el: document.querySelector('#scroll-container'),
+  smooth: true
+});
+
+// Listen for scroll events
+scroll.on('scroll', function (args) {
+  // Get the current scroll position
+  const currentPosition = args.scroll.y;
+
+  // Calculate the position of each text section on the right side
+  const section1Position = document.querySelector('.text-section-1').offsetTop;
+  const section2Position = document.querySelector('.text-section-2').offsetTop;
+  const section3Position = document.querySelector('.text-section-3').offsetTop;
+
+  // Show each text section as the user scrolls past it
+  if (currentPosition >= section1Position) {
+    document.querySelector('.text-section-1').classList.add('show');
+  }
+  if (currentPosition >= section2Position) {
+    document.querySelector('.text-section-2').classList.add('show');
+  }
+  if (currentPosition >= section3Position) {
+    document.querySelector('.text-section-3').classList.add('show');
+  }
+});
+</script>

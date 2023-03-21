@@ -1,0 +1,20 @@
+---
+const {frontmatter} = Astro.props;
+import "../globals.css";
+---
+
+<html class="prose prose-xl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content={frontmatter.description}>
+    <meta name="keywords" content={frontmatter.keywords}>
+    <meta name="author" content={frontmatter.author}>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body class="">
+    <h1>{frontmatter.title}</h1>
+    <h2>By {frontmatter.author}</h2>
+    <p>{frontmatter.description}</p>
+    <slot />
+  </body>
+</html>

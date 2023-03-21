@@ -2,9 +2,7 @@
 import Title from "../components/Title.astro";
 import Cursor from "../components/Cursor.astro";
 import "../globals.css";
-import Background from "../components/Background.astro";
-import ScrollingAbilities from "../components/ScrollingAbilities.astro";
-import TextGame from "../components/TextGame.astro";
+import ScrollIndicator from "../components/ScrollIndicator.astro";
 ---
 
 <html lang="en">
@@ -21,11 +19,10 @@ import TextGame from "../components/TextGame.astro";
     <div data-scroll-container class="overflow-y-scroll">
       <div class="place-items-center grid h-screen">
         <Title />
+				<ScrollIndicator />
       </div>
 			<!--ScrollingAbilities /-->
-			
 			<div class="h-screen">
-				<TextGame />
 			</div>
     </div>
 	</body>
@@ -43,4 +40,10 @@ import TextGame from "../components/TextGame.astro";
         smooth: true
     }
 	});
+
+	scroll.on('scroll', () => {
+		const scrollIndicator = document.querySelector('.bounce');
+		scrollIndicator.classList.add('hide');
+	});
+
 </script>

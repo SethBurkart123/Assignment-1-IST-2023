@@ -22,6 +22,11 @@
   mix-blend-mode: difference;
 }
 
+.cursor-hidden {
+  transition: opacity 0.4s !important;
+  opacity: 0 !important;
+}
+
 .cursor.cursor-dot {
   @apply from-blue-400 to-purple-500 bg-gradient-to-tr;
   transition: blur 2s, opacity 2s;

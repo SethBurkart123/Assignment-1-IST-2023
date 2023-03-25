@@ -21,9 +21,18 @@ function updateCursor(e) {
   cursorShadow.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
   cursorDot.setAttribute("style", "top: " + (mouseY) + "px; left: " + (mouseX) + "px;")
   cursorShadow.classList.remove("disabled");
+  const hideCursor = document.querySelector('.hide-cursor');
   const gameContainer = document.querySelector('#gameContainer');
   const svgCursor = document.querySelector('.svg-cursor');
 
+  if (hideCursor && hideCursor.contains(e.target)) {
+    // set cursor opacity to 0
+    cursorDot.classList.add("cursor-hidden");
+    cursorShadow.classList.add("cursor-hidden");
+  } else {
+    cursorDot.classList.remove("cursor-hidden");
+    cursorShadow.classList.remove("cursor-hidden");
+  }
   if (gameContainer && gameContainer.contains(e.target)) {
     cursorDot.style.display = 'none';
     cursorShadow.style.display = 'none';

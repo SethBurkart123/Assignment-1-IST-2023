@@ -15,10 +15,9 @@ const gameContainer = document.querySelector('#gameContainer');
 const svgCursor = document.querySelector('.svg-cursor');
 
 document.addEventListener('mousemove', (e) => {
-  requestAnimationFrame(updateCursor(e));
+  requestAnimationFrame(() => updateCursor(e));
 });
 function updateCursor(e) {
-  cursorShadow.setAttribute("style", "top: " + (e.clientY) + "px; left: " + (e.clientX) + "px;")
   cursorDot.setAttribute("style", "top: " + (e.clientY) + "px; left: " + (e.clientX) + "px;")
 
   if (hideCursor && hideCursor.contains(e.target)) {

@@ -1,20 +1,14 @@
 ---
 import { Pages } from "../content/products.astro";
-
-const { backHidden } = Astro.props;
+import Main from "../layouts/main.astro";
 const pages = Pages();
 ---
 
-<body class="bg-black">
+<Main>
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-    <a href="/" class="text-2xl font-bold tracking-tight flex text-gray-200 hover:text-white gap-4">
-      { !backHidden &&
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      }
+    <h1 class="text-4xl font-bold tracking-tight text-white">
       Items
-    </a>
+    </h1>
     <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       { pages.map((page) =>
         <div class="group relative" style={ page.name === 'Hidden' ? "display: none" : "" }>
@@ -36,4 +30,4 @@ const pages = Pages();
       )}
     </div>
   </div>
-</body>
+</Main>

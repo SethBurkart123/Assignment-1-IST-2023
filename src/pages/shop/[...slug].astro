@@ -1,0 +1,36 @@
+---
+import ItemsPage from "../../components/ItemsPage.astro";
+import ProductPage from "../../components/Product-Page.astro";
+import { Pages } from "../../content/products.astro";
+
+export async function getStaticPaths() {
+  const pages = Pages();
+
+  return pages.map(({ slug, name, price, rating, description, features, image }) => {
+    return {
+      params: { slug },
+      props: { name, price, rating, description, features, image },
+    };
+  });
+}
+
+const { slug } = Astro.params;
+const { name, price, rating, description, features, image } = Astro.props;
+
+---
+
+<div>
+  { slug ?
+  <ProductPage
+    name={name}
+    price={price}
+    rating={rating}
+    description={description}
+    features={features}
+    image={image}/>
+
+    :
+
+    <ItemsPage />
+  }
+</div>

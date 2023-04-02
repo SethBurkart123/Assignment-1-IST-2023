@@ -1,0 +1,45 @@
+---
+import Cursor from "../components/Cursor.astro";
+
+const props = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Seth Burkart</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+    />
+  </head>
+  <body class="w-screen h-screen overflow-hidden text-white bg-black">
+    <Cursor />
+    <div class="absolute flex items-center w-screen justify-center z-50 top-0 left-0 text-center pt-4">
+      <a href="/" class="text-2xl cursor-none font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Home</a>
+      <a href="/pages/about" class="text-2xl cursor-none font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>About</a>
+      <a href="/pages/contact" class="text-2xl cursor-none font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Contact</a>
+      <a href="/pages/games" class="text-2xl cursor-none font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Games</a>
+      <a href="/shop" class="text-2xl cursor-none font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Shop</a>
+    </div>
+    <div data-scroll-container id="swup" class="overflow-y-scroll min-h-screen wrapper">
+      <slot />
+    </div>
+    <script type="module" src="/app.js"></script>
+    <script is:inline src="https://cdn.blobity.dev/by.js"></script>
+    <script is:inline>
+      console.log("LOADED")
+      const options = {
+        color: 'rgb(160, 160, 160)'
+      };
+      new Blobity(options);
+    </script>
+  </body>
+</html>
+
+<style>
+
+</style>

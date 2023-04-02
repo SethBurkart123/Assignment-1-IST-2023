@@ -3,45 +3,21 @@ import Title from "../components/Title.astro";
 import Cursor from "../components/Cursor.astro";
 import "../globals.css";
 import ScrollIndicator from "../components/ScrollIndicator.astro";
+import ItemsPage from "../components/ItemsPage.astro";
+import Main from "../layouts/main.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Seth Burkart</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
-    />
-  </head>
-  <body class="w-screen h-screen overflow-hidden text-white bg-black">
-    <Cursor />
-    <div data-scroll-container class="overflow-y-scroll">
-      <div class="place-items-center grid h-screen relative">
-        <Title />
-        <ScrollIndicator />
-      </div>
-      <div class="flex justify-center px-[10%] pb-[10%] w-screen">
-        <iframe width="1237" height="686" class="cursor-pointer hide-cursor z-50 rounded-lg" src="https://www.youtube.com/embed/oFtIIDcZo80" title="Demo Reel 2022" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-      </div>
-        <!--ScrollingAbilities /-->
-      <!--div data-scroll-container class="h-screen bg-stone-900">
-        <div class="flex gap-4" data-scroll data-scroll-sticky data-scroll-target="#sticky-element">
-          <h2 id="sticky-element" data-scroll class="text-white font-bold text-8xl">I do</h2>
-          <div class="overflow-clip">
-            <h2 class="font-bold text-8xl highlight bg-clip-text">
-              <span video-editing-title>Video Editing</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div id="test" class="h-screen bg-stone-800"></div-->
+<Main>
+  <div data-scroll-container class="overflow-y-scroll">
+    <div class="place-items-center grid h-screen relative">
+      <Title />
+      <ScrollIndicator />
     </div>
-  </body>
-</html>
+    <div class="flex justify-center px-[10%] pb-[10%] w-screen">
+      <iframe width="1237" height="686" class="cursor-pointer hide-cursor z-50 rounded-lg" src="https://www.youtube.com/embed/oFtIIDcZo80" title="Demo Reel 2022" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </div>
+</Main>
 
 <script
   is:inline

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="description" content="Seth Burkart's IST Assignment">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Astro v2.1.2">
+    <title>Seth Burkart</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
+  <link rel="stylesheet" href="/_astro/examples.bae52689.css" /></head>
+  <body class="w-screen h-screen overflow-hidden text-white bg-black">
+    <div class="absolute flex py-2 top-0 left-0 w-screen border-b-white/0 border-b z-10 backdrop-blur-sm bg-white/5">
+      <a class="text-2xl font-light px-4 py-2 opacity-0 w-0">Home</a>
+    </div>
+    <div class="absolute top-0 py-2 left-0 z-20 flex items-center justify-center w-screen">
+      <a href="/" class="text-2xl font-light px-4 py-2" style="display:block">Home</a>
+      <a href="/pages/about" class="text-2xl font-light px-4 py-2" style="display:block">About</a>
+      <a href="/pages/contact" class="text-2xl font-light px-4 py-2" style="display:block">Contact</a>
+      <a href="/pages/games" class="text-2xl font-light px-4 py-2" style="display:block">Games</a>
+      <a href="/shop" class="text-2xl font-light px-4 py-2" style="display:block">Shop</a>
+    </div>
+
+    <div data-scroll-container class="overflow-y-scroll min-h-screen wrapper">
+      <div class="sm:flex max-sm:pt-24 gap-8 px-4 lg:px-48 justify-center items-center min-h-screen">
+    <div class="">
+      <h1 class="text-8xl font-bold text-center max-sm:pb-8 sm:text-right">About</h1>
+    </div>
+    <div class="max-sm:text-center">
+      <p>Hi, I'm Seth. I do lots of video editing and coding, in fact I have a YouTube channel where I do both. I also do a lot of other things, like playing video games, watching movies, and hanging out with friends. I'm a pretty chill guy, and I'm always down to talk about anything.</p>
+    </div>
+  </div>
+    </div>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+
+<script>
+  //if (window.location.pathname != '/shop') {
+    new LocomotiveScroll({
+      el: document.querySelector("[data-scroll-container]"),
+      smooth: true,
+      getDirection: true,
+      lerp: 0.3,
+      allowTouchMove: true,
+      smartphone: {
+        smooth: true,
+      },
+    });
+  //}
+</script>
+
+<script src="https://cdn.blobity.dev/by.js"></script>
+<script>
+  const options = {
+    color: 'rgb(160, 160, 160)',
+    dotColor: 'rgb(168 85 247)',
+    mode: 'bouncy',
+    zIndex: '11',
+    invert: true
+  };
+  new Blobity(options);
+</script></body></html>

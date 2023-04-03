@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="/_astro/examples.bae52689.css" />
+<link rel="stylesheet" href="/_astro/pong.99b3d9b5.css" /><body class="bg-gray-900 text-white astro-2DSDDFBG">
+  <div class="container astro-2DSDDFBG">
+    <div id="remove-container" class="absolute top-0 left-0 z-50 h-screen w-screen grid place-content-center bg-black/50 astro-2DSDDFBG">
+      <button id="playButton" class="bg-gray-600 hover:bg-gray-700 text-4xl text-white font-bold py-2 px-4 rounded astro-2DSDDFBG">Play Game</button>
+    </div>
+    <div id="canvasWrapper" class="w-screen h-screen astro-2DSDDFBG">
+      <canvas id="gameCanvas" class="w-screen h-screen astro-2DSDDFBG"></canvas>
+    </div>
+  </div>
+  <svg width="0" height="0" class="astro-2DSDDFBG">
+    <filter id="fisheye" class="astro-2DSDDFBG">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="BLURRED" class="astro-2DSDDFBG"></feGaussianBlur>
+      <feColorMatrix in="BLURRED" type="matrix" values="0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 1 0" result="DEFOCUS" class="astro-2DSDDFBG"></feColorMatrix>
+      <feImage width="100%" height="100%" result="FISH" xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxwYXRoIGQ9Ik0wLDB2MWhBMHgxLFYwWiIvPjwvc3ZnPgo=" class="astro-2DSDDFBG"></feImage>
+      <feComposite in="SourceGraphic" in2="FISH" operator="in" result="FISH-CLIP" class="astro-2DSDDFBG"></feComposite>
+      <feMerge class="astro-2DSDDFBG">
+        <feMergeNode in="DEFOCUS" class="astro-2DSDDFBG"></feMergeNode>
+        <feMergeNode in="FISH-CLIP" class="astro-2DSDDFBG"></feMergeNode>
+      </feMerge>
+    </filter>
+  </svg>  
+
+<script>
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
+const playButton = document.getElementById("playButton");
+const removeContainer = document.getElementById("remove-container");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+const keyState = {
+  w: false,
+  s: false,
+  ArrowUp: false,
+  ArrowDown: false,
+};
+class Paddle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.width = 10;
+    this.height = 100;
+  }
+  draw() {
+    ctx.fillStyle = "white";
+    ctx.shadowColor = "#a3be8c";
+    ctx.shadowBlur = 10;
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.shadowBlur = 0;
+  }
+}
+class Ball {
+  constructor() {
+    this.reset();
+  }
+  reset() {
+    this.x = canvas.width / 2;
+    this.y = canvas.height / 2;
+    this.radius = 8;
+    this.speed = 6;
+    this.directionX = 1;
+    this.directionY = 1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = "white";
+    ctx.shadowColor = "#a3be8c";
+    ctx.shadowBlur = 10;
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+}
+
+const leftPaddle = new Paddle(20, canvas.height / 2 - 20);
+const rightPaddle = new Paddle(canvas.width - 20, canvas.height / 2 - 20);
+const ball = new Ball();
+
+let leftScore = 0;
+let rightScore = 0;
+let gameStarted = false;
+
+function drawScores() {
+  ctx.font = "24px monospace";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
+  ctx.shadowColor = "#a3be8c";
+  ctx.shadowBlur = 10;
+  ctx.fillText(leftScore, canvas.width / 2 - 50, 30);
+  ctx.fillText(rightScore, canvas.width / 2 + 30, 30);
+  ctx.shadowBlur = 0;
+}
+
+function collision(paddle) {
+  return (
+    ball.x - ball.radius < paddle.x + paddle.width &&
+    ball.x + ball.radius > paddle.x &&
+    ball.y - ball.radius < paddle.y + paddle.height &&
+    ball.y + ball.radius > paddle.y
+  );
+}
+
+function update() {
+  if (!gameStarted) return;
+
+  // Handle paddle movement
+  const paddleSpeed = 10;
+
+  if (keyState.w && leftPaddle.y > 0) {
+    leftPaddle.y -= paddleSpeed;
+  }
+  if (keyState.s && leftPaddle.y + leftPaddle.height < canvas.height) {
+    leftPaddle.y += paddleSpeed;
+  }
+  if (keyState.ArrowUp && rightPaddle.y > 0) {
+    rightPaddle.y -= paddleSpeed;
+  }
+  if (keyState.ArrowDown && rightPaddle.y + rightPaddle.height < canvas.height) {
+    rightPaddle.y += paddleSpeed;
+  }
+
+  ball.x += ball.speed * ball.directionX;
+  ball.y += ball.speed * ball.directionY;
+
+  if (ball.y + ball.radius >= canvas.height || ball.y - ball.radius <= 0) {
+    ball.directionY *= -1;
+    canvas.classList.add("shake");
+    setTimeout(() => {
+      canvas.classList.remove("shake");
+    }, 1000);
+  }
+  if (collision(leftPaddle) || collision(rightPaddle)) {
+    ball.directionX *= -1;
+  }
+  if (ball.x + ball.radius >= canvas.width) {
+    leftScore++;
+    ball.reset();
+    canvas.classList.add("blurry");
+    setTimeout(() => {
+      canvas.classList.remove("blurry");
+    }, 1000);
+  }
+  if (ball.x - ball.radius <= 0) {
+    rightScore++;
+    ball.reset();
+    canvas.classList.add("blurry");
+    setTimeout(() => {
+      canvas.classList.remove("blurry");
+    }, 1000);
+  }
+  requestAnimationFrame(update);
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  leftPaddle.draw();
+  rightPaddle.draw();
+  ball.draw();
+  drawScores();
+  requestAnimationFrame(draw);
+}
+
+function onKeyDown(e) {
+  if (keyState.hasOwnProperty(e.key)) {
+    keyState[e.key] = true;
+  }
+}
+
+function onKeyUp(e) {
+  if (keyState.hasOwnProperty(e.key)) {
+    keyState[e.key] = false;
+  }
+}
+
+function startGame() {
+  if (!gameStarted) {
+    gameStarted = true;
+    update();
+  }
+}
+
+playButton.addEventListener("click", () => {
+  removeContainer.remove();
+  startGame();
+});
+
+document.addEventListener("keydown", onKeyDown);
+document.addEventListener("keyup", onKeyUp);
+
+draw();
+
+</script></body>

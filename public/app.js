@@ -1,7 +1,13 @@
-import Swup from 'swup'
-import SwupSlideTheme from '@swup/slide-theme'
-
 const swup = new Swup({
-  plugins: [new SwupSlideTheme()],
-})
+  animationSelector: '[class*="swup-transition-"]'
+});
 
+swup.on('willReplaceContent', () => {
+  const wipe = document.querySelector('.fullscreen-wipe');
+  wipe.style.transform = 'scaleX(1)';
+});
+
+swup.on('contentReplaced', () => {
+  const wipe = document.querySelector('.fullscreen-wipe');
+  wipe.style.transform = 'scaleX(0)';
+});

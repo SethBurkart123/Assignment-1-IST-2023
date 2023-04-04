@@ -1,56 +1,19 @@
 ---
+import Main from "./main.astro";
+
 const {frontmatter} = Astro.props;
 ---
 
-<html class="">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="description" content={frontmatter.description}>
-    <meta name="keywords" content={frontmatter.keywords}>
-    <meta name="author" content={frontmatter.author}>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body class="pt-8 w-screen flex content-center justify-center flex-wrap">
-    <article class="backdrop-blur-3xl outline outline-gray-200/40 z-10 bg-gray-200/20 px-4 py-4 rounded-lg">
+<Main>
+  <div class="pt-32 w-screen flex content-center justify-center flex-wrap">
+    <article class="backdrop-blur-3xl outline z-10 px-4 py-4 rounded-lg">
       <h1 class="text-5xl">{frontmatter.title}</h1>
       <h2 class="text-3xl mt-4">By {frontmatter.author}</h2>
       <div class="outline-"></div>
-      <div class="prose prose-xl">
+      <div class="prose prose-xl prose-neutral prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-code:text-gray-400 prose-p:text-gray-200 prose-strong:text-gray-100">
         <p>{frontmatter.description}</p>
         <slot />
       </div>
     </article>
-    <!--div class="background fixed top-0 left-0 w-screen h-screen -z-10" /-->
-  </body>
-</html>
-
-<style>
-.background {
-  width: 100%;
-  background: rgb(37,99,235);
-  background: radial-gradient(circle, rgba(37,99,235,1) 0%, rgba(132,204,252,1) 50%, rgb(37,99,235) 100%);
-}
-:root {
-  font-family: "San Francisco Display";
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-}
-
-@font-face {
-  font-family: "San Francisco Display";
-  src: url("/fonts/ie.eot"); /* IE9*/
-  src: url("/fonts/ie.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */ url("/fonts/cf.woff2") format("woff2"),
-    /* chrome firefox */ url("/fonts/cf.woff") format("woff"),
-    /* chrome firefox */ url("/fonts/cf.ttf") format("truetype"),
-    /* chrome firefox opera Safari, Android, iOS 4.2+*/
-      url("/fonts/ios.svg#San Francisco Display") format("svg"); /* iOS 4.1- */
-}
-</style>
+  </div>
+</Main>

@@ -1,7 +1,12 @@
-import Swup from 'swup'
-import SwupSlideTheme from '@swup/slide-theme'
+import swup from '/deps/Swup.cjs';
+import SwupSlideTheme from '/deps/SwupSlideTheme.min.js';
 
-const swup = new Swup({
-  plugins: [new SwupSlideTheme()],
+console.log("initialising!")
+
+const transitions = new swup({
+  plugins: [new SwupSlideTheme()], 
 })
 
+setInterval(() => {
+  console.log("interval!")
+}, 1000)

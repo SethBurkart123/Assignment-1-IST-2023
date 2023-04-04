@@ -1,0 +1,95 @@
+---
+import Main from "../layouts/main.astro";
+
+---
+
+<Main>
+  <div class="container mx-auto px-4 py-20">
+    <h1 class="text-6xl text-white font-bold mb-6 text-center">Calculator</h1>
+    <div id="calculator" class="grid grid-cols-4 gap-3">
+      <!-- Display -->
+      <input id="display" class="bg-gray-950 text-white col-span-4 rounded p-3 mb-4 text-right text-4xl" type="text" readonly />
+
+      <!-- Calculator buttons -->
+      <button class="col-span-2 bg-gray-500 hover:bg-teal-500 transition duration-500 text-white rounded text-4xl p-2" onclick="clearDisplay()">C</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('%')">%</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="backspace()">⌫</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="appendOperator('+')">+</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('7')">7</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('8')">8</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('9')">9</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="appendOperator('-')">-</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('4')">4</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('5')">5</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('6')">6</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="appendOperator('*')">x</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('1')">1</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('2')">2</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('3')">3</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="appendOperator('/')">÷</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('0')">0</button>
+      <button class="bg-gray-700/20 hover:bg-gray-600/20 transition text-white rounded text-4xl p-2" onclick="appendNumber('.')">.</button>
+      <button class="bg-orange-700/20 hover:bg-orange-600/20 transition text-white rounded text-4xl p-2" onclick="calculateResult()">=</button>
+    </div>
+  </div>
+</Main>
+
+<script is:inline>
+let display = document.getElementById('display');
+let currentInput = '';
+let currentOperator = null;
+let currentFunction = null;
+
+function appendNumber(number) {
+  currentInput += number;
+  display.value = currentInput;
+}
+
+function appendOperator(operator) {
+  if (currentOperator) {
+    calculateResult();
+  }
+  currentOperator = operator;
+  currentInput = display.value + operator;
+  display.value = currentInput;
+}
+
+function appendFunction(func) {
+  if (currentFunction) {
+    return;
+  }
+  currentFunction = func;
+  currentInput = display.value + func + '(';
+  display.value = currentInput;
+}
+
+function clearDisplay() {
+  currentInput = '';
+  currentOperator = null;
+  currentFunction = null;
+  display.value = currentInput;
+}
+
+function backspace() {
+  currentInput = currentInput.slice(0, -1);
+  display.value = currentInput;
+}
+
+function calculateResult() {
+  try {
+    if (currentFunction) {
+      currentInput += ')';
+      currentFunction = null;
+    }
+    let result = eval(currentInput);
+    display.value = result;
+    currentInput = result;
+    currentOperator = null;
+  } catch (error) {
+    display.value = 'Error';
+    currentInput = '';
+    currentOperator = null;
+    currentFunction = null;
+  }
+}
+</script>

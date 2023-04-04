@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="/_astro/examples.bae52689.css" />
+<link rel="stylesheet" href="/_astro/examples.1373a8ea.css" />
 <link rel="stylesheet" href="/_astro/pong.99b3d9b5.css" /><body class="bg-gray-900 text-white astro-2DSDDFBG">
   <div class="container astro-2DSDDFBG">
     <div id="remove-container" class="absolute top-0 left-0 z-50 h-screen w-screen grid place-content-center bg-black/50 astro-2DSDDFBG">
@@ -23,6 +23,7 @@
   </svg>  
 
 <script>
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const playButton = document.getElementById("playButton");
@@ -52,15 +53,16 @@ class Paddle {
 }
 class Ball {
   constructor() {
+    this.speed = 6;
     this.reset();
   }
   reset() {
+    console.log(this.speed);
     this.x = canvas.width / 2;
     this.y = canvas.height / 2;
     this.radius = 8;
-    this.speed = 6;
-    this.directionX = 1;
-    this.directionY = 1;
+    this.directionX = ( Math.round(Math.random()) * 2 ) - 1;
+    this.directionY = ( Math.random() * 2 ) - 1;
   }
   draw() {
     ctx.beginPath();
@@ -127,10 +129,11 @@ function update() {
     canvas.classList.add("shake");
     setTimeout(() => {
       canvas.classList.remove("shake");
-    }, 1000);
+    }, 500);
   }
   if (collision(leftPaddle) || collision(rightPaddle)) {
     ball.directionX *= -1;
+    ball.speed += 0.1;
   }
   if (ball.x + ball.radius >= canvas.width) {
     leftScore++;
@@ -138,7 +141,7 @@ function update() {
     canvas.classList.add("blurry");
     setTimeout(() => {
       canvas.classList.remove("blurry");
-    }, 1000);
+    }, 500);
   }
   if (ball.x - ball.radius <= 0) {
     rightScore++;
@@ -146,7 +149,7 @@ function update() {
     canvas.classList.add("blurry");
     setTimeout(() => {
       canvas.classList.remove("blurry");
-    }, 1000);
+    }, 500);
   }
   requestAnimationFrame(update);
 }

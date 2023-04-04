@@ -1,0 +1,120 @@
+<body class="container bg-black text-white grid place-items-center">
+  <h1 class="text-6xl font-bold">Hangman Game</h1>
+  <div class="word"></div>
+  <div class="letters flex gap-4"></div>
+  <div class="guesses"></div>
+
+  <script is:inline>
+  // Word array
+  const wordArray = ['hangman', 'javascript'];
+
+  // Randomly choose word from array
+  const word = wordArray[Math.floor(Math.random() * wordArray.length)];
+
+  // Generate array of underscores to represent word
+  let hiddenWord = [];
+  for (let i = 0; i < word.length; i++) {
+      hiddenWord.push('_');
+  }
+
+  // Initialize game state
+  let guesses = [];
+  let incorrectGuesses = 0;
+  let gameOver = false;
+
+  // Get HTML elements
+  const wordDiv = document.querySelector('.word');
+  const lettersDiv = document.querySelector('.letters');
+  const guessesDiv = document.querySelector('.guesses');
+
+  // Update game state and HTML display on letter guess
+  function guessLetter(letter) {
+      // Check if letter has already been guessed
+      if (guesses.includes(letter)) {
+          return;
+      }
+
+      // Add letter to guesses array
+      guesses.push(letter);
+
+      // Check if letter is in word
+      let letterInWord = false;
+      for (let i = 0; i < word.length; i++) {
+          if (word[i] === letter) {
+              hiddenWord[i] = letter;
+              letterInWord = true;
+          }
+      }
+
+      // Update HTML display
+      updateDisplay();
+
+      // Check if game is over
+      if (hiddenWord.join('') === word) {
+          gameOver = true;
+          guessesDiv.textContent = 'You win!';
+      } else if (!letterInWord) {
+          incorrectGuesses++;
+          if (incorrectGuesses === 6) {
+              gameOver = true;
+              guessesDiv.textContent = `You lose! The word was "${word}".`;
+          }
+      }
+  }
+
+  // Update HTML display
+  function updateDisplay() {
+      wordDiv.textContent = hiddenWord.join(' ');
+
+      lettersDiv.innerHTML = '';
+      for (let i = 0; i < 26; i++) {
+          const letter = String.fromCharCode(97 + i);
+          const letterDiv = document.createElement('div');
+          letterDiv.classList.add('letter');
+          if (guesses.includes(letter)) {
+              letterDiv.classList.add('disabled');
+          }
+          if (hiddenWord.includes(letter)) {
+              letterDiv.classList.add('correct');
+          }
+          if (!hiddenWord.includes(letter) && guesses.includes(letter)) {
+              letterDiv.classList.add('incorrect');
+          }
+          letterDiv.textContent = letter;
+          letterDiv.addEventListener('click', () => {
+              if (!gameOver) {
+                  guessLetter(letter);
+              }
+          });
+          lettersDiv.appendChild(letterDiv);
+      }
+
+      guessesDiv.textContent = `Incorrect guesses: ${incorrectGuesses}`;
+  }
+
+  // Initialize HTML display
+  updateDisplay();
+
+
+
+  </script>
+</body>
+
+<style>
+  .letter {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #1f2937;
+    color: #ffffff;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  .letter:hover {
+    background-color: #4b5563;
+  }
+</style>

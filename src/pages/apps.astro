@@ -1,0 +1,79 @@
+---
+import Main from "../layouts/main.astro";
+
+const games = [
+  {
+    name: "Text Based Game",
+    image: "/images/text-game.png",
+    slug: "text-game",
+  },
+  {
+    name: "Ping Pong",
+    image: "/images/ping-pong.jpg",
+    slug: "pong",
+  },
+  {
+    name: "Minecraft",
+    image: "/images/minecraft.webp",
+    slug: "minecraft.html"
+  }
+]
+
+const apps = [
+  {
+    name: "Calculator",
+    image: "https://w7.pngwing.com/pngs/724/729/png-transparent-calculator-calculator-electronics-calculator-technology-thumbnail.png",
+    slug: "calculator",
+  }
+]
+---
+<Main>
+  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="text-4xl font-bold tracking-tight text-white">
+      Games
+    </h1>
+    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      { games.map((page) =>
+        <div class="group relative transition rounded-md" style={ page.name === 'Hidden' ? "display: none" : "" }>
+          <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+            <img src={`${page.image}`} alt="Product image." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-xl text-white">
+                <a href={`/${page.slug}`}>
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {page.name}
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      ) }
+    </div>
+    <h1 class="text-4xl font-bold tracking-tight text-white mt-16">
+      Apps
+    </h1>
+    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      { apps.map((page) =>
+        <div class="group relative transition rounded-md" style={ page.name === 'Hidden' ? "display: none" : "" }>
+          <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+            <img src={`${page.image}`} alt="Product image." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-xl text-white">
+                <a href={`/${page.slug}`}>
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  {page.name}
+                </a>
+              </h3>
+            </div>
+          </div>
+        </div>
+      ) }
+    </div>
+  </div>
+  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+  </div>
+</Main>

@@ -2,36 +2,39 @@
 const props = Astro.props;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="description" content="Seth Burkart's IST Assignment" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Seth Burkart</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
-    />
-  </head>
-  <body class="w-screen h-screen overflow-hidden text-white bg-black">
-    <div class="absolute flex py-2 top-0 left-0 w-screen border-b-white/0 border-b z-10 backdrop-blur-sm bg-white/0">
-      <a class="text-2xl font-light px-4 py-2 opacity-0 w-0">Home</a>
-    </div>
-    <div class="absolute top-0 py-2 left-0 z-20 flex items-center justify-center w-screen sans-serif">
-      <a href="/" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Home</a>
-      <a href="/pages/about" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>About</a>
-      <a href="/pages/contact" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Contact</a>
-      <a href="/pages/games" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Games</a>
-      <a href="/shop" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Shop</a>
-    </div>
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="description" content="Seth Burkart's IST Assignment" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content={Astro.generator} />
+  <title>Seth Burkart</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+  />
 
-    <div data-scroll-container class="overflow-y-scroll min-h-screen wrapper">
-      <slot />
-    </div>
-  </body>
-</html>
+  <script src='https://unpkg.com/nprogress@0.2.0/nprogress.js'></script>
+  <link rel="stylesheet" href="https://unpkg.com/nprogress@0.2.0/nprogress.css" />
+
+</head>
+<body class="w-screen h-screen overflow-hidden text-white bg-black">
+  <header-background class="absolute flex py-2 top-0 left-0 w-screen border-b-white/0 border-b z-10 backdrop-blur-sm bg-white/0">
+    <a class="text-2xl font-light px-4 py-2 opacity-0 w-0">Home</a>
+  </header-background>
+  <header class="absolute top-0 py-2 left-0 z-20 flex items-center justify-center w-screen sans-serif">
+    <a href="/" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Home</a>
+    <a href="/about" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>About</a>
+    <a href="/contact" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Contact</a>
+    <a href="/apps" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Apps</a>
+    <a href="/shop" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Shop</a>
+    <a href="/blog" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Blog</a>
+  </header>
+
+  <main data-scroll-container class="overflow-y-scroll min-h-screen">
+    <slot />
+  </main>
+</body>
 
 <script
   is:inline

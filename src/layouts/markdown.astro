@@ -9,7 +9,7 @@ const {frontmatter} = Astro.props;
     <article class="backdrop-blur-3xl outline z-10 px-4 py-4 rounded-lg">
       <h1 class="text-5xl">{frontmatter.title}</h1>
       <h2 class="text-3xl mt-4">By {frontmatter.author}</h2>
-      <div class="prose prose-xl prose-neutral prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-code:text-gray-300 prose-code:bg-stone-900 prose-code:rounded-md prose-p:text-gray-200 prose-th:text-white prose-tr:text-gray-200 prose-th:bg-gray-800 prose-strong:text-gray-100">
+      <div class="prose prose-xl prose-neutral prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-code:text-gray-300 prose-code:bg-stone-900 prose-code:rounded-mdga prose-p:text-gray-200 prose-th:text-white prose-tr:text-gray-200 prose-th:bg-gray-800 prose-strong:text-gray-100">
         <p>{frontmatter.description}</p>
         <slot />
       </div>

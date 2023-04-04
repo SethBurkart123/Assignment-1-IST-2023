@@ -19,18 +19,10 @@ const { name, price, rating, description, features, image } = Astro.props;
 
 ---
 
-<div>
-  { slug ?
-  <ProductPage
-    name={name}
-    price={price}
-    rating={rating}
-    description={description}
-    features={features}
-    image={image}/>
-
-    :
-
-    <ItemsPage />
-  }
-</div>
+<ProductPage
+  name={name}
+  price={price}
+  rating={rating}
+  description={description}
+  features={features}
+  image={image}/>

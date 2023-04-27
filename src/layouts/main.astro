@@ -43,7 +43,7 @@ const props = Astro.props;
 ></script>
 
 <script is:inline>
-  //if (window.location.pathname != '/shop') {
+  if (window.location.pathname != '/shop') {
     new LocomotiveScroll({
       el: document.querySelector("[data-scroll-container]"),
       smooth: true,
@@ -54,7 +54,7 @@ const props = Astro.props;
         smooth: true,
       },
     });
-  //}
+  }
 </script>
 
 <script is:inline src="https://cdn.blobity.dev/by.js"></script>

@@ -29,6 +29,7 @@ const props = Astro.props;
     <a href="/apps" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Apps</a>
     <a href="/shop" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Shop</a>
     <a href="/blog" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Blog</a>
+    <a href="/presentation" class="text-2xl font-light px-4 py-2" style={props.hideMenu ? { 'display': 'none' } : { 'display': 'block' }}>Presentation</a>
   </header>
 
   <main data-scroll-container class="overflow-y-scroll min-h-screen">
@@ -62,7 +63,6 @@ const props = Astro.props;
     color: 'rgb(160, 160, 160)',
     dotColor: 'rgb(168 85 247)',
     mode: 'bouncy',
-    zIndex: '11',
     invert: true
   };
   new Blobity(options);

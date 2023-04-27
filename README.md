@@ -34,3 +34,5 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview` | Preview your build locally, before deploying |
 
 ## 👀 Screenshots
+
+![image](https://github.com/SethBurkart123/Assignment-1-IST-2023/blob/main/github-files/Wireframe.png?raw=true)

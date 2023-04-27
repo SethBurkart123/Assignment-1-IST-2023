@@ -1,0 +1,132 @@
+---
+import Main from "../layouts/main.astro";
+import "../globals.css";
+import Title from "../components/Title.astro";
+---
+<head>
+  <link rel="stylesheet" href="reveal/css/reset.css">
+  <link rel="stylesheet" href="reveal/css/reveal.css">
+  <link rel="stylesheet" href="reveal/css/theme/black.css" id="theme">
+</head>
+<body class="bg-black">
+  <div id="header">
+    <header-background class="absolute flex py-2 top-0 left-0 w-screen border-b-white/0 border-b z-10 backdrop-blur-sm bg-white/0">
+      <a class="text-2xl font-light px-4 py-2 opacity-0 w-0">Home</a>
+    </header-background>
+    <header class="absolute sanfrancisco top-0 py-2 left-0 z-20 text-white flex items-center justify-center w-screen sans-serif">
+      <a href="/" class="text-2xl font-light px-4 py-2">Home</a>
+      <a href="/about" class="text-2xl font-light px-4 py-2">About</a>
+      <a href="/contact" class="text-2xl font-light px-4 py-2">Contact</a>
+      <a href="/apps" class="text-2xl font-light px-4 py-2">Apps</a>
+      <a href="/shop" class="text-2xl font-light px-4 py-2">Shop</a>
+      <a href="/blog" class="text-2xl font-light px-4 py-2">Blog</a>
+      <a href="/presentation" class="text-2xl font-light px-4 py-2">Presentation</a>
+    </header>
+  </div>
+  <div class="w-screen h-screen grid place-items-center">
+    <div id="slideshow">
+      <div class="reveal bg-[#191919]">
+        <div class="slides">
+          <section data-markdown>
+            <textarea data-template>
+              # My IST Website
+              By Seth
+              <iframe src="https://giphy.com/embed/Dh5q0sShxgp13DwrvG" width="480" height="296" class="giphy-embed mx-auto"></iframe>
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              Basically I coded it myself because I don't like wix
+              <iframe src="https://giphy.com/embed/YQitE4YNQNahy" width="480" height="270" class="giphy-embed mx-auto w-[80%]"></iframe>
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              # Wireframes
+              <img src="https://raw.githubusercontent.com/SethBurkart123/Assignment-1-IST-2023/main/github-files/Wireframe.png" />
+            </textarea>
+          </section>
+          <section data-markdown>
+            <textarea data-template>
+              ## So let's take a look.
+              Shall we?
+              <p class="text-zinc-600 font-thin text-sm">press (f) to exit fullscreen</p>
+            </textarea>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script is:inline src="reveal/reveal.js"></script>
+  <script is:inline src="reveal/plugin/zoom/zoom.js"></script>
+  <script is:inline src="reveal/plugin/notes/notes.js"></script>
+  <script is:inline src="reveal/plugin/search/search.js"></script>
+  <script is:inline src="reveal/plugin/markdown/markdown.js"></script>
+  <script is:inline src="reveal/plugin/highlight/highlight.js"></script>
+  <script is:inline>
+    const slideshow = document.querySelector('#slideshow');
+    const header = document.querySelector('#header');
+    slideshow.style.width = '70%';
+    slideshow.style.height = '70%';
+
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      center: true,
+      hash: true,
+      plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'f') {
+        if (slideshow.style.width === '100%' && slideshow.style.height === '100%') {
+          slideshow.style.width = '70%';
+          slideshow.style.height = '70%';
+          header.style.display = '';
+          document.exitFullscreen();
+          Reveal.layout();
+        } else {
+          slideshow.style.width = '100%';
+          slideshow.style.height = '100%';
+          header.style.display = 'none';
+          Reveal.layout();
+        }
+      } else if (event.key === 'Escape') {
+        if (slideshow.style.width === '100%' && slideshow.style.height === '100%') {
+          slideshow.style.width = '70%';
+          slideshow.style.height = '70%';
+          header.style.display = '';
+          document.exitFullscreen();
+          Reveal.layout();
+        }
+      }
+    });
+  
+  </script>
+</body>
+
+<style>
+  :root, .sanfrancisco {
+    font-family: "San Francisco Display" !important;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @font-face {
+    font-family: "San Francisco Display";
+    src: url("/fonts/ie.eot"); /* IE9*/
+    src: url("/fonts/ie.eot?#iefix") format("embedded-opentype"),
+      /* IE6-IE8 */ url("/fonts/cf.woff2") format("woff2"),
+      /* chrome firefox */ url("/fonts/cf.woff") format("woff"),
+      /* chrome firefox */ url("/fonts/cf.ttf") format("truetype"),
+      /* chrome firefox opera Safari, Android, iOS 4.2+*/
+        url("/fonts/ios.svg#San Francisco Display") format("svg"); /* iOS 4.1- */
+  }
+</style>

@@ -46,12 +46,22 @@ import Title from "../components/Title.astro";
               <img src="https://raw.githubusercontent.com/SethBurkart123/Assignment-1-IST-2023/main/github-files/Wireframe.png" />
             </textarea>
           </section>
-          <section data-markdown>
-            <textarea data-template>
-              ## So let's take a look.
-              Shall we?
-              <p class="text-zinc-600 font-thin text-sm">press (f) to exit fullscreen</p>
-            </textarea>
+          <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+            <div class="r-hstack justify-center">
+              <div data-id="box1" data-auto-animate-delay="0" style="background: cyan; width: 150px; height: 100px; margin: 10px;"></div>
+              <div data-id="box2" data-auto-animate-delay="0.1" style="background: magenta; width: 150px; height: 100px; margin: 10px;"></div>
+              <div data-id="box3" data-auto-animate-delay="0.2" style="background: yellow; width: 150px; height: 100px; margin: 10px;"></div>
+            </div>
+            <h2 style="margin-top: 20px;">So...</h2>
+          </section>
+          <section data-auto-animate data-auto-animate-easing="cubic-bezier(0.770, 0.000, 0.175, 1.000)">
+            <div class="r-stack">
+              <div data-id="box1" style="background: cyan; width: 300px; height: 300px; border-radius: 200px;"></div>
+              <div data-id="box2" style="background: magenta; width: 200px; height: 200px; border-radius: 200px;"></div>
+              <div data-id="box3" style="background: yellow; width: 100px; height: 100px; border-radius: 200px;"></div>
+            </div>
+            <h2 style="margin-top: 20px;">Let's take a look!</h2>
+            <p class="text-zinc-600 font-thin text-sm">press (f) to exit fullscreen</p>
           </section>
         </div>
       </div>
